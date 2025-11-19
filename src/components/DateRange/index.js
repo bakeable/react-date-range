@@ -60,7 +60,7 @@ class DateRange extends Component {
 
     // reverse dates if startDate before endDate
     let isStartDateSelected = focusedRange[1] === 0;
-    if (isBefore(endDate, startDate)) {
+    if (startDate && endDate && isBefore(endDate, startDate)) {
       isStartDateSelected = !isStartDateSelected;
       [startDate, endDate] = [endDate, startDate];
     }
