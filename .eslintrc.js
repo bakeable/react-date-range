@@ -26,5 +26,6 @@ module.exports = {
         "node": true,
         "browser": true,
         "jest": true,
-      },
+    },
+    ignorePatterns: ["**/*.d.ts"],
 };

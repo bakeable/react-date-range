@@ -1,11 +1,12 @@
 {
-  "name": "react-date-range",
-  "version": "2.0.3",
+  "name": "@bakeable/react-date-range",
+  "version": "2.0.6",
   "description": "A React component for choosing dates and date ranges.",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "start": "npm build:css & styleguidist server",
-    "build": "npm build:css & npm build:js & styleguidist build",
+    "start": "npm run build:css & styleguidist server",
+    "build": "npm run build:css & npm run build:js & styleguidist build",
     "build:css": "postcss 'src/styles.scss' -d dist --ext css & postcss 'src/theme/*.scss' -d 'dist/theme' --ext css",
     "build:js": "babel ./src --out-dir ./dist --ignore test.js",
     "lint": "eslint 'src/**/*.js'",
@@ -30,7 +31,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "http://github.com/bakeable/react-date-range"
+    "url": "git+ssh://git@github.com/bakeable/react-date-range.git"
   },
   "bugs": {
     "url": "http://github.com/bakeable/react-date-range/issues"
