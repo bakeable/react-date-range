@@ -1,5 +1,36 @@
 This component wraps **[DefinedRange](#definedrange)** and **[Calendar](#calendar)** components together, and extends all the props of them.
 
+In addition to the inherited props, it has the following additional props:
+
+| Prop Name                | Type     | Description                                                                                      |
+| ------------------------ | -------- | ------------------------------------------------------------------------------------------------ |
+| **showComparisonToggle** | boolean  | When true, shows a toggle button in the footer to enable/disable comparison mode (default: true) |
+| **onComparisonToggle**   | function | Callback fired when comparison mode is toggled. Receives the new comparison state as parameter   |
+| **equalLengthRanges**    | boolean  | When true, all ranges after the first must have the same duration as the first range             |
+
+#### Example: DateRangePicker with Comparison Toggle
+
+```jsx inside Markdown
+import { addDays } from 'date-fns';
+import { useState } from 'react';
+
+const [state, setState] = useState([
+  {
+    startDate: new Date(),
+    endDate: addDays(new Date(), 7),
+    key: 'selection'
+  }
+]);
+
+<DateRangePicker
+  onChange={item => setState([item.selection])}
+  ranges={state}
+  showComparisonToggle={true}
+  equalLengthRanges={true}
+  onComparisonToggle={enabled => console.log('Comparison mode:', enabled)}
+/>;
+```
+
 #### Example: 2 Month View
 
 ```jsx inside Markdown
@@ -139,18 +170,19 @@ const [state, setState] = useState({
   direction="horizontal"
   ariaLabels={{
     dateInput: {
-      selection1: { startDate: "start date input of selction 1", endDate: "end date input of selction 1" },
-      selection2: { startDate: "start date input of selction 2", endDate: "end date input of selction 2" }
+      selection1: { startDate: 'start date input of selction 1', endDate: 'end date input of selction 1' },
+      selection2: { startDate: 'start date input of selction 2', endDate: 'end date input of selction 2' }
     },
-    monthPicker: "month picker",
-    yearPicker: "year picker",
-    prevButton: "previous month button",
-    nextButton: "next month button",
+    monthPicker: 'month picker',
+    yearPicker: 'year picker',
+    prevButton: 'previous month button',
+    nextButton: 'next month button'
   }}
 />;
 ```
 
 #### Example: Custom Day Cell Content
+
 Show orange dot only for weekend
 
 ```jsx inside Markdown
@@ -176,23 +208,23 @@ function customDayContent(day) {
     extraDot = (
       <div
         style={{
-          height: "5px",
-          width: "5px",
-          borderRadius: "100%",
-          background: "orange",
-          position: "absolute",
+          height: '5px',
+          width: '5px',
+          borderRadius: '100%',
+          background: 'orange',
+          position: 'absolute',
           top: 2,
-          right: 2,
+          right: 2
         }}
       />
-    )
+    );
   }
   return (
     <div>
       {extraDot}
-      <span>{format(day, "d")}</span>
+      <span>{format(day, 'd')}</span>
     </div>
-  )
+  );
 }
 
 <DateRangePicker
@@ -205,20 +237,21 @@ function customDayContent(day) {
   dayContentRenderer={customDayContent}
   ariaLabels={{
     dateInput: {
-      selection1: { startDate: "start date input of selction 1", endDate: "end date input of selction 1" },
-      selection2: { startDate: "start date input of selction 2", endDate: "end date input of selction 2" }
+      selection1: { startDate: 'start date input of selction 1', endDate: 'end date input of selction 1' },
+      selection2: { startDate: 'start date input of selction 2', endDate: 'end date input of selction 2' }
     },
-    monthPicker: "month picker",
-    yearPicker: "year picker",
-    prevButton: "previous month button",
-    nextButton: "next month button",
+    monthPicker: 'month picker',
+    yearPicker: 'year picker',
+    prevButton: 'previous month button',
+    nextButton: 'next month button'
   }}
 />;
 ```
 
-
 #### Example: Restrict Date Selection
+
 Restricts access for range selection to (-30, +30) days of current date.
+
 ```jsx inside Markdown
 import { addDays } from 'date-fns';
 import { useState } from 'react';

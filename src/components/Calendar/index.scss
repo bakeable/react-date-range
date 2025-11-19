@@ -11,6 +11,35 @@
   justify-content: space-between;
 }
 
+.rdrDateDisplayLabel {
+  font-size: 0.75em;
+  font-weight: 500;
+  color: #666;
+  margin-bottom: 0.25em;
+  text-align: center;
+}
+
+.rdrDateDisplayInputs {
+  display: flex;
+  justify-content: space-between;
+  
+  .rdrDateDisplayItem {
+    flex: 1 1;
+    width: 0;
+    text-align: center;
+    color: inherit;
+    & + & {
+      margin-left: 0.833em;
+    }
+    input {
+      text-align: inherit;
+      &:disabled {
+        cursor: default;
+      }
+    }
+  }
+}
+
 .rdrDateDisplayItem{
   flex: 1 1;
   width: 0;

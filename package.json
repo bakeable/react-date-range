@@ -1,12 +1,12 @@
 {
   "name": "@bakeable/react-date-range",
-  "version": "2.0.7",
+  "version": "2.0.13",
   "description": "A React component for choosing dates and date ranges.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "start": "npm run build:css & styleguidist server",
-    "build": "npm run build:css & npm run build:js & styleguidist build",
+    "build": "npm run build:css & npm run build:js",
     "build:css": "postcss 'src/styles.scss' -d dist --ext css & postcss 'src/theme/*.scss' -d 'dist/theme' --ext css",
     "build:js": "babel ./src --out-dir ./dist --ignore test.js",
     "lint": "eslint 'src/**/*.js'",

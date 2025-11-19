@@ -291,42 +291,49 @@ class Calendar extends PureComponent {
               className={styles.dateDisplay}
               key={i}
               style={{ color: range.color || defaultColor }}>
-              <DateInput
-                className={classnames(styles.dateDisplayItem, {
-                  [styles.dateDisplayItemActive]: focusedRange[0] === i && focusedRange[1] === 0,
-                })}
-                readOnly={!editableDateInputs}
-                disabled={range.disabled}
-                value={range.startDate}
-                placeholder={startDatePlaceholder}
-                dateOptions={this.dateOptions}
-                dateDisplayFormat={dateDisplayFormat}
-                ariaLabel={
-                  ariaLabels.dateInput &&
-                  ariaLabels.dateInput[range.key] &&
-                  ariaLabels.dateInput[range.key].startDate
-                }
-                onChange={this.onDragSelectionEnd}
-                onFocus={() => this.handleRangeFocusChange(i, 0)}
-              />
-              <DateInput
-                className={classnames(styles.dateDisplayItem, {
-                  [styles.dateDisplayItemActive]: focusedRange[0] === i && focusedRange[1] === 1,
-                })}
-                readOnly={!editableDateInputs}
-                disabled={range.disabled}
-                value={range.endDate}
-                placeholder={endDatePlaceholder}
-                dateOptions={this.dateOptions}
-                dateDisplayFormat={dateDisplayFormat}
-                ariaLabel={
-                  ariaLabels.dateInput &&
-                  ariaLabels.dateInput[range.key] &&
-                  ariaLabels.dateInput[range.key].endDate
-                }
-                onChange={this.onDragSelectionEnd}
-                onFocus={() => this.handleRangeFocusChange(i, 1)}
-              />
+              {range.label && (
+                <div className={styles.dateDisplayLabel}>
+                  {range.label}
+                </div>
+              )}
+              <div className={styles.dateDisplayInputs}>
+                <DateInput
+                  className={classnames(styles.dateDisplayItem, {
+                    [styles.dateDisplayItemActive]: focusedRange[0] === i && focusedRange[1] === 0,
+                  })}
+                  readOnly={!editableDateInputs}
+                  disabled={range.disabled}
+                  value={range.startDate}
+                  placeholder={startDatePlaceholder}
+                  dateOptions={this.dateOptions}
+                  dateDisplayFormat={dateDisplayFormat}
+                  ariaLabel={
+                    ariaLabels.dateInput &&
+                    ariaLabels.dateInput[range.key] &&
+                    ariaLabels.dateInput[range.key].startDate
+                  }
+                  onChange={this.onDragSelectionEnd}
+                  onFocus={() => this.handleRangeFocusChange(i, 0)}
+                />
+                <DateInput
+                  className={classnames(styles.dateDisplayItem, {
+                    [styles.dateDisplayItemActive]: focusedRange[0] === i && focusedRange[1] === 1,
+                  })}
+                  readOnly={!editableDateInputs}
+                  disabled={range.disabled}
+                  value={range.endDate}
+                  placeholder={endDatePlaceholder}
+                  dateOptions={this.dateOptions}
+                  dateDisplayFormat={dateDisplayFormat}
+                  ariaLabel={
+                    ariaLabels.dateInput &&
+                    ariaLabels.dateInput[range.key] &&
+                    ariaLabels.dateInput[range.key].endDate
+                  }
+                  onChange={this.onDragSelectionEnd}
+                  onFocus={() => this.handleRangeFocusChange(i, 1)}
+                />
+              </div>
             </div>
           );
         })}

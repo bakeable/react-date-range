@@ -115,9 +115,16 @@ exports[`DefinedRange tests Should render dynamic static label contents correctl
       styles={
         Object {
           "calendarWrapper": "rdrCalendarWrapper",
+          "comparisonToggle": "rdrComparisonToggle",
+          "comparisonToggleEnabled": "rdrComparisonToggleEnabled",
+          "comparisonToggleIcon": "rdrComparisonToggleIcon",
+          "comparisonToggleText": "rdrComparisonToggleText",
+          "comparisonToggleWrapper": "rdrComparisonToggleWrapper",
           "dateDisplay": "rdrDateDisplay",
+          "dateDisplayInputs": "rdrDateDisplayInputs",
           "dateDisplayItem": "rdrDateDisplayItem",
           "dateDisplayItemActive": "rdrDateDisplayItemActive",
+          "dateDisplayLabel": "rdrDateDisplayLabel",
           "dateDisplayWrapper": "rdrDateDisplayWrapper",
           "dateRangePickerWrapper": "rdrDateRangePickerWrapper",
           "dateRangeWrapper": "rdrDateRangeWrapper",
@@ -179,9 +186,16 @@ exports[`DefinedRange tests Should render dynamic static label contents correctl
       styles={
         Object {
           "calendarWrapper": "rdrCalendarWrapper",
+          "comparisonToggle": "rdrComparisonToggle",
+          "comparisonToggleEnabled": "rdrComparisonToggleEnabled",
+          "comparisonToggleIcon": "rdrComparisonToggleIcon",
+          "comparisonToggleText": "rdrComparisonToggleText",
+          "comparisonToggleWrapper": "rdrComparisonToggleWrapper",
           "dateDisplay": "rdrDateDisplay",
+          "dateDisplayInputs": "rdrDateDisplayInputs",
           "dateDisplayItem": "rdrDateDisplayItem",
           "dateDisplayItemActive": "rdrDateDisplayItemActive",
+          "dateDisplayLabel": "rdrDateDisplayLabel",
           "dateDisplayWrapper": "rdrDateDisplayWrapper",
           "dateRangePickerWrapper": "rdrDateRangePickerWrapper",
           "dateRangeWrapper": "rdrDateRangeWrapper",

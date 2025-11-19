@@ -2,6 +2,8 @@ export default {
   dateRangeWrapper: 'rdrDateRangeWrapper',
   calendarWrapper: 'rdrCalendarWrapper',
   dateDisplay: 'rdrDateDisplay',
+  dateDisplayLabel: 'rdrDateDisplayLabel',
+  dateDisplayInputs: 'rdrDateDisplayInputs',
   dateDisplayItem: 'rdrDateDisplayItem',
   dateDisplayItemActive: 'rdrDateDisplayItemActive',
   monthAndYearWrapper: 'rdrMonthAndYearWrapper',
@@ -50,4 +52,9 @@ export default {
   infiniteMonths: 'rdrInfiniteMonths',
   monthsVertical: 'rdrMonthsVertical',
   monthsHorizontal: 'rdrMonthsHorizontal',
+  comparisonToggleWrapper: 'rdrComparisonToggleWrapper',
+  comparisonToggle: 'rdrComparisonToggle',
+  comparisonToggleEnabled: 'rdrComparisonToggleEnabled',
+  comparisonToggleIcon: 'rdrComparisonToggleIcon',
+  comparisonToggleText: 'rdrComparisonToggleText',
 };

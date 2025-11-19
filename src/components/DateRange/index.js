@@ -25,6 +25,7 @@ class DateRange extends Component {
       moveRangeOnFirstSelection,
       retainEndDateOnFirstSelection,
       disabledDates,
+      equalLengthRanges,
     } = this.props;
     const focusedRangeIndex = focusedRange[0];
     const selectedRange = ranges[focusedRangeIndex];
@@ -32,13 +33,32 @@ class DateRange extends Component {
     let { startDate, endDate } = selectedRange;
     const now = new Date();
     let nextFocusRange;
+
+    // Calculate reference range duration if equalLengthRanges is enabled
+    let referenceDuration = null;
+    if (equalLengthRanges && focusedRangeIndex > 0) {
+      const firstRange = ranges[0];
+      if (firstRange && firstRange.startDate && firstRange.endDate) {
+        referenceDuration = differenceInCalendarDays(firstRange.endDate, firstRange.startDate);
+      }
+    }
+
     if (!isSingleValue) {
       startDate = value.startDate;
       endDate = value.endDate;
+      
+      // Apply equal length constraint for non-first ranges
+      if (equalLengthRanges && focusedRangeIndex > 0 && referenceDuration !== null && startDate) {
+        endDate = addDays(startDate, referenceDuration);
+      }
     } else if (focusedRange[1] === 0) {
       // startDate selection
       const dayOffset = differenceInCalendarDays(endDate || now, startDate);
       const calculateEndDate = () => {
+        if (equalLengthRanges && focusedRangeIndex > 0 && referenceDuration !== null) {
+          // For equal length ranges, always use the reference duration
+          return addDays(value, referenceDuration);
+        }
         if (moveRangeOnFirstSelection) {
           return addDays(value, dayOffset);
         }
@@ -53,9 +73,23 @@ class DateRange extends Component {
       startDate = value;
       endDate = calculateEndDate();
       if (maxDate) endDate = min([endDate, maxDate]);
-      nextFocusRange = [focusedRange[0], 1];
+      
+      // For equal length ranges, skip to next range instead of end date selection
+      if (equalLengthRanges && focusedRangeIndex > 0) {
+        const nextFocusRangeIndex = findNextRangeIndex(this.props.ranges, focusedRange[0]);
+        nextFocusRange = [nextFocusRangeIndex, 0];
+      } else {
+        nextFocusRange = [focusedRange[0], 1];
+      }
     } else {
-      endDate = value;
+      // endDate selection
+      if (equalLengthRanges && focusedRangeIndex > 0 && referenceDuration !== null && startDate) {
+        // For equal length ranges after the first, don't allow manual end date selection
+        // Instead, calculate end date based on start date and reference duration
+        endDate = addDays(startDate, referenceDuration);
+      } else {
+        endDate = value;
+      }
     }
 
     // reverse dates if startDate before endDate
@@ -152,6 +186,7 @@ DateRange.defaultProps = {
   retainEndDateOnFirstSelection: false,
   rangeColors: ['#3d91ff', '#3ecf8e', '#fed14c'],
   disabledDates: [],
+  equalLengthRanges: false,
 };
 
 DateRange.propTypes = {
@@ -162,6 +197,7 @@ DateRange.propTypes = {
   ranges: PropTypes.arrayOf(rangeShape),
   moveRangeOnFirstSelection: PropTypes.bool,
   retainEndDateOnFirstSelection: PropTypes.bool,
+  equalLengthRanges: PropTypes.bool,
 };
 
 export default DateRange;

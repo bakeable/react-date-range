@@ -81,4 +81,30 @@ describe('DateRange', () => {
       endDate: null,
     });
   });
+
+  test('calculate new selection with equal length ranges enabled', () => {
+    const firstRange = { startDate: startDate, endDate: addDays(startDate, 5), key: 'range1' };
+    const secondRange = { startDate: null, endDate: null, key: 'range2' };
+
+    testRenderer.update(
+      <DateRange
+        {...commonProps}
+        ranges={[firstRange, secondRange]}
+        equalLengthRanges={true}
+        focusedRange={[1, 0]} // Focus on second range, start date selection
+      />
+    );
+
+    const newStartDate = addDays(startDate, 10);
+    const methodResult = instance.calcNewSelection(newStartDate, true);
+
+    // Should set end date to maintain same duration as first range (5 days)
+    compareRanges(methodResult.range, {
+      startDate: newStartDate,
+      endDate: addDays(newStartDate, 5),
+    });
+
+    // Should skip to next range instead of end date selection
+    expect(methodResult.nextFocusRange[1]).toEqual(0);
+  });
 });
