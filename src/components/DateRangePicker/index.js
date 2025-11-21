@@ -84,7 +84,9 @@ class DateRangePicker extends Component {
           })}
           onClick={this.toggleComparison}>
           <span className={this.styles.comparisonToggleIcon}>{comparisonEnabled ? '✓' : '+'}</span>
-          <span className={this.styles.comparisonToggleText}>Compare periods</span>
+          <span className={this.styles.comparisonToggleText}>
+            {comparisonEnabled ? 'Comparison range enabled' : 'Comparison range disabled'}
+          </span>
         </button>
       </div>
     );
@@ -93,6 +95,8 @@ class DateRangePicker extends Component {
   render() {
     const { focusedRange } = this.state;
     const visibleRanges = this.getVisibleRanges();
+
+    const { showInputRanges = true } = this.props;
 
     return (
       <div className={classnames(this.styles.dateRangePickerWrapper, this.props.className)}>
@@ -104,6 +108,8 @@ class DateRangePicker extends Component {
             )
           }
           {...this.props}
+          // when showInputRanges is false, pass an empty array to disable defaultInputRanges
+          inputRanges={showInputRanges ? this.props.inputRanges : []}
           ranges={visibleRanges}
           range={visibleRanges[focusedRange[0]]}
           className={undefined}
@@ -124,6 +130,7 @@ class DateRangePicker extends Component {
 
 DateRangePicker.defaultProps = {
   showComparisonToggle: true,
+  showInputRanges: true,
 };
 
 DateRangePicker.propTypes = {
@@ -132,6 +139,7 @@ DateRangePicker.propTypes = {
   className: PropTypes.string,
   showComparisonToggle: PropTypes.bool,
   onComparisonToggle: PropTypes.func,
+  showInputRanges: PropTypes.bool,
 };
 
 export default DateRangePicker;

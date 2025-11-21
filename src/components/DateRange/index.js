@@ -46,7 +46,7 @@ class DateRange extends Component {
     if (!isSingleValue) {
       startDate = value.startDate;
       endDate = value.endDate;
-      
+
       // Apply equal length constraint for non-first ranges
       if (equalLengthRanges && focusedRangeIndex > 0 && referenceDuration !== null && startDate) {
         endDate = addDays(startDate, referenceDuration);
@@ -73,7 +73,7 @@ class DateRange extends Component {
       startDate = value;
       endDate = calculateEndDate();
       if (maxDate) endDate = min([endDate, maxDate]);
-      
+
       // For equal length ranges, skip to next range instead of end date selection
       if (equalLengthRanges && focusedRangeIndex > 0) {
         const nextFocusRangeIndex = findNextRangeIndex(this.props.ranges, focusedRange[0]);

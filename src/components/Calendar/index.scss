@@ -6,8 +6,8 @@
   user-select: none;
 }
 
-.rdrDateDisplay{
-  display: flex;
+.rdrDateDisplay {
+  display: block;
   justify-content: space-between;
 }
 
@@ -16,7 +16,7 @@
   font-weight: 500;
   color: #666;
   margin-bottom: 0.25em;
-  text-align: center;
+  text-align: left;
 }
 
 .rdrDateDisplayInputs {

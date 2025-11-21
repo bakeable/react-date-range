@@ -291,11 +291,7 @@ class Calendar extends PureComponent {
               className={styles.dateDisplay}
               key={i}
               style={{ color: range.color || defaultColor }}>
-              {range.label && (
-                <div className={styles.dateDisplayLabel}>
-                  {range.label}
-                </div>
-              )}
+              {range.label && <div className={styles.dateDisplayLabel}>{range.label}</div>}
               <div className={styles.dateDisplayInputs}>
                 <DateInput
                   className={classnames(styles.dateDisplayItem, {
